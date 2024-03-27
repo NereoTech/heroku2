@@ -6,6 +6,7 @@ from pathlib import Path
 import json
 
 col_date: str = "date_heure"
+col_jour: str = "date_jour"
 col_donnees: str = "consommation"
 cols: List[str] = [col_date, col_donnees]
 fic_export_data: str = "data/interim/data.csv"
@@ -42,16 +43,25 @@ def export_data(df: pd.DataFrame):
     df.to_csv(fic_export_data, index=False)
 
 
-def calculate_weekly_mean(df):
-    # Calcul de la moyenne de consommation par jour par semaine    
-    df_weekly_mean = df.groupby(pd.Grouper(key=col_date, freq='W')).mean().reset_index()     
-    return df_weekly_mean
-
+def format_data_jour(df: pd.DataFrame):
+    # typage
+    df[col_jour] = pd.to_datetime(df[col_jour])
+    # ordre
+    df = df.sort_values(col_jour)
+    # filtrage colonnes
+    df = df[cols]
+    # dédoublonnage
+    df = df.groupby(col_jour).sum().reset_index
+    return df
 
 def main_process():
     df: pd.DataFrame = load_data()
     df = format_data(df)
     export_data(df)
+
+    df2: pd.DataFrame = load_data()
+    df2 = format_data_jour(df2)
+    export_data(df2)
 
 
 if __name__ == "__main__":
