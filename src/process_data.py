@@ -43,7 +43,7 @@ def export_data(df: pd.DataFrame):
     df.to_csv(fic_export_data, index=False)
 
 
-def format_data_jour(df: pd.DataFrame):
+def format_data_jour(df2: pd.DataFrame):
     # typage
     df2[col_jour] = pd.to_datetime(df2[col_jour])
     # ordre
