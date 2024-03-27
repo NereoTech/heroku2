@@ -1,4 +1,3 @@
-[14:32] Yanis MEZABER
 import streamlit as st
 
 import pandas as pd

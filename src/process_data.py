@@ -1,4 +1,3 @@
-[14:31] Yanis MEZABER
 import pandas as pd
 
 from typing import List
