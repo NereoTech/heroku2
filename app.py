@@ -4,7 +4,7 @@ import pandas as pd
 # import matplotlib.pyplot as plt
 import plotly.express as px
 from src.fetch_data import load_data_from_lag_to_today
-from src.process_data import col_date, col_donnees, main_process, fic_export_data
+from src.process_data import col_date, col_donnees, main_process, fic_export_data, calculate_weekly_mean
 import logging
 import os
 import glob
@@ -70,5 +70,5 @@ fig = px.line(df, x=col_date, y=col_donnees, title="Consommation en fonction du 
 st.plotly_chart(fig)
 
 
-fig2 = px.bar(df, x=col_date, y=col_donnees, title="Moyenne de la consommation des jours de la semaine")
+fig2 = px.bar(calculate_weekly_mean(df), x=col_date, y=col_donnees, title="Moyenne de la consommation des jours de la semaine")
 st.plotly_chart(fig2)
