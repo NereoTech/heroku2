@@ -45,14 +45,14 @@ def export_data(df: pd.DataFrame):
 
 def format_data_jour(df: pd.DataFrame):
     # typage
-    df[col_jour] = pd.to_datetime(df[col_jour])
+    df2[col_jour] = pd.to_datetime(df2[col_jour])
     # ordre
-    df = df.sort_values(col_jour)
+    df2 = df2.sort_values(col_jour)
     # filtrage colonnes
-    df = df[cols]
+    df2 = df2[cols]
     # dédoublonnage
-    df = df.groupby(col_jour).sum().reset_index
-    return df
+    df2 = df2.groupby(col_jour).sum().reset_index
+    return df2
 
 def main_process():
     df: pd.DataFrame = load_data()
