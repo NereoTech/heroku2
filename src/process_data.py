@@ -44,13 +44,13 @@ def export_data(df: pd.DataFrame):
 
 def format_data_jour(df: pd.DataFrame):
     # typage
-    df[col_jour] = pd.to_datetime(df[col_jour])
+    df[col_date] = pd.to_datetime(df[col_date])
     # ordre
-    df = df.sort_values(col_jour)
+    df = df.sort_values(col_date)
     # filtrage colonnes
     df = df[cols]
     # dédoublonnage
-    df = df.groupby(col_jour).sum().reset_index
+    df = df.groupby(col_date).sum().reset_index
     return df
 
 def main_process():
