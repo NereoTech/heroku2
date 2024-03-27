@@ -43,16 +43,16 @@ def export_data(df: pd.DataFrame):
     df.to_csv(fic_export_data, index=False)
 
 
-def format_data_jour(df2: pd.DataFrame):
+def format_data_jour(df: pd.DataFrame):
     # typage
-    df2[col_jour] = pd.to_datetime(df2[col_jour])
+    df[col_jour] = pd.to_datetime(df[col_jour])
     # ordre
-    df2 = df2.sort_values(col_jour)
+    df = df.sort_values(col_jour)
     # filtrage colonnes
-    df2 = df2[cols]
+    df = df[cols]
     # dédoublonnage
-    df2 = df2.groupby(col_jour).sum().reset_index
-    return df2
+    df = df.groupby(col_jour).sum().reset_index
+    return df
 
 def main_process():
     df: pd.DataFrame = load_data()
