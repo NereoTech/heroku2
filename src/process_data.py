@@ -42,6 +42,12 @@ def export_data(df: pd.DataFrame):
     df.to_csv(fic_export_data, index=False)
 
 
+def calculate_weekly_mean(df):
+    # Calcul de la moyenne de consommation par jour par semaine    
+    df_weekly_mean = df.groupby(pd.Grouper(key=col_date, freq='W')).mean().reset_index()     
+    return df_weekly_mean
+
+
 def main_process():
     df: pd.DataFrame = load_data()
     df = format_data(df)
