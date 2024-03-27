@@ -11,7 +11,7 @@ import glob
 
 logging.basicConfig(level=logging.INFO)
 
- 
+
 LAG_N_DAYS: int = 7
 
 # * INIT REPO FOR DATA
@@ -68,3 +68,7 @@ numerical_column = col_donnees
 # Create interactive line chart using Plotly
 fig = px.line(df, x=col_date, y=col_donnees, title="Consommation en fonction du temps")
 st.plotly_chart(fig)
+
+
+fig2 = px.line(df, x=col_date, y=col_donnees, title="Consommation en fonction du temps")
+st.plotly_chart(fig2)
