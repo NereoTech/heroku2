@@ -70,5 +70,5 @@ fig = px.line(df, x=col_date, y=col_donnees, title="Consommation en fonction du 
 st.plotly_chart(fig)
 
 
-fig2 = px.line(df, x=col_date, y=col_donnees, title="Consommation en fonction du temps")
+fig2 = px.bar(df, x=col_date, y=col_donnees, title="Moyenne de la consommation des jours de la semaine")
 st.plotly_chart(fig2)
