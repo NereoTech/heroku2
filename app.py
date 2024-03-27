@@ -11,7 +11,7 @@ import glob
 
 logging.basicConfig(level=logging.INFO)
 
-
+ 
 LAG_N_DAYS: int = 7
 
 # * INIT REPO FOR DATA
