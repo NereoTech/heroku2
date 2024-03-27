@@ -6,7 +6,6 @@ from pathlib import Path
 import json
 
 col_date: str = "date_heure"
-col_jour: str = "date_jour"
 col_donnees: str = "consommation"
 cols: List[str] = [col_date, col_donnees]
 fic_export_data: str = "data/interim/data.csv"
@@ -58,10 +57,6 @@ def main_process():
     df: pd.DataFrame = load_data()
     df = format_data(df)
     export_data(df)
-
-    df2: pd.DataFrame = load_data()
-    df2 = format_data_jour(df2)
-    export_data(df2)
 
 
 if __name__ == "__main__":
