@@ -8,13 +8,14 @@ from src.process_data import col_date, col_donnees, main_process, fic_export_dat
 import logging
 import os
 import glob
+from datetime import datetime
+
 
 def remove_data(df: pd.DataFrame, last_n_samples: int = 4*3):
 
     # df: pd.DataFrame = pd.read_csv(fic_export_data)
     return df.iloc[:-last_n_samples]
     # df.to_csv(fic_export_data, index=False)
-
 logging.basicConfig(level=logging.INFO)
 
 
@@ -71,11 +72,21 @@ numerical_column = col_donnees
 # # Display the plot
 # st.pyplot(fig)
 
+now = datetime.now()
+now_aware = now.replace(microsecond=0).isoformat() + '+00:00'
+formatted_time = datetime.fromisoformat(now_aware)
+last = df.iloc[-1][col_date]
+
+diff = formatted_time - last
+
+
 # ! Plotly
 # Create interactive line chart using Plotly
 fig = px.line(df, x=col_date, y=col_donnees, title="Consommation en fonction du temps")
 st.plotly_chart(fig)
 
+st.subheader(f'Temps manquants: {diff}')
 
 fig2 = px.bar(format_data_jour(df), x=col_date, y=col_donnees, title="Moyenne de la consommation des jours de la semaine")
 st.plotly_chart(fig2)
+

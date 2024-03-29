@@ -4,6 +4,7 @@ import os
 import glob
 from pathlib import Path
 import json
+import datetime
 
 col_date: str = "date_heure"
 col_donnees: str = "consommation"
@@ -43,8 +44,10 @@ def export_data(df: pd.DataFrame):
 
 
 def format_data_jour(df: pd.DataFrame):
-    df = df.groupby(df[col_date].dt.day_of_week).sum().reset_index()
+    df = df.groupby(df[col_date].dt.day_of_week)[col_donnees].mean().reset_index()
+
     return df
+
 
 def main_process():
     df: pd.DataFrame = load_data()
